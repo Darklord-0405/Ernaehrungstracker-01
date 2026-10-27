@@ -1,0 +1,10 @@
+# Signaturschlüssel niemals veröffentlichen
+android/keys/
+*.pem
+*.jks
+*.keystore
+# Build-Ausgaben und Abhängigkeiten
+android/build/
+android/node_modules/
+android/fonts/
+android/Ernaehrungstracker.apk

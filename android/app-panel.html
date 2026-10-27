@@ -1,0 +1,36 @@
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h2>KI-Analyse mit Ollama</h2>
+      <p class="note" style="margin:0">Foto, Etikett, Beschreiben und „KI-Ideen“ laufen über deinen eigenen Ollama-Server, zum Beispiel auf deinem PC im selben WLAN. Für Fotos und Etiketten brauchst du ein Modell, das Bilder versteht, etwa qwen2.5vl, gemma3 oder llama3.2-vision.</p>
+      <div class="field"><label for="olUrl">Server-Adresse</label><input id="olUrl" placeholder="192.168.178.20:11434" inputmode="url" autocapitalize="off" spellcheck="false"></div>
+      <div class="field"><label for="olModel">Modell (leer = qwen2.5vl:7b lokal, gemma4:31b bei Ollama Cloud)</label><input id="olModel" placeholder="gemma4:31b" list="olModels" autocapitalize="off" spellcheck="false"><datalist id="olModels"></datalist></div>
+      <div class="field"><label for="olKey">API-Schlüssel (nur für Ollama Cloud oder geschützte Server)</label><input id="olKey" type="password" placeholder="leer lassen bei lokalem Server" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="btns"><button class="btn" id="olSave">Speichern</button><button class="btn ghost" id="olTest">Verbindung testen</button></div>
+      <div class="status" id="olStatus" role="status"></div>
+      <details class="why"><summary>So richtest du Ollama auf dem PC ein</summary>
+        <ol class="note" style="margin:6px 0 0;padding-left:18px">
+          <li>Ollama von ollama.com installieren.</li>
+          <li>Ein Bildmodell laden, im Terminal: <span class="num">ollama pull qwen2.5vl:7b</span></li>
+          <li>Ollama für das WLAN freigeben: Umgebungsvariable <span class="num">OLLAMA_HOST=0.0.0.0</span> setzen und Ollama neu starten. Unter Windows: Systemeinstellungen → Umgebungsvariablen.</li>
+          <li>Die IP-Adresse des PCs herausfinden (Windows: <span class="num">ipconfig</span>, Mac/Linux: <span class="num">ip a</span>) und oben mit <span class="num">:11434</span> eintragen.</li>
+          <li>Falls der Test scheitert: Port 11434 in der Firewall des PCs für das private Netzwerk erlauben.</li>
+        </ol>
+        <p class="note" style="margin:6px 0 0">Ollama Cloud: Adresse <span class="num">https://ollama.com</span> und den Schlüssel aus deinem ollama.com-Konto eintragen. Im kostenlosen Tarif funktioniert <span class="num">gemma4:31b</span>; es versteht Bilder. Viele andere Cloud-Modelle sind kostenpflichtig.</p>
+      </details>
+    </div>
+
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h2>Erinnerungen</h2>
+      <p class="note" style="margin:0">Die App meldet sich nur, wenn du hinter deinem Tagesplan liegst. Essen: zu deinen Mahlzeiten (einstellbar unter „Deine Mahlzeiten“, z. B. 9:30, 12:30, 15:30, 18:30 Uhr, mit Midnight Snack auch 23:15 Uhr), wenn Kalorien oder Kohlenhydrate fehlen. Trinken: alle zwei Stunden von 10 bis 20 Uhr, wenn du weniger als geplant getrunken hast. Trägst du vorher etwas ein, fällt die Mitteilung weg.</p>
+      <label class="chk" for="remFood"><input type="checkbox" id="remFood"> Ans Essen erinnern (Kalorien und Kohlenhydrate)</label>
+      <label class="chk" for="remWater"><input type="checkbox" id="remWater"> Ans Trinken erinnern</label>
+      <div class="btns"><button class="btn ghost" id="remPerm">Mitteilungen erlauben</button><button class="btn ghost" id="remTest">Test-Mitteilung</button></div>
+      <div class="status" id="remStatus" role="status"></div>
+    </div>
+
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h2>Datensicherung</h2>
+      <p class="note" style="margin:0">Deine Einträge liegen nur auf diesem Handy. Speichere ab und zu eine Sicherung im Download-Ordner, zum Beispiel vor einem Handywechsel.</p>
+      <div class="btns"><button class="btn ghost" id="expBtn">Daten exportieren</button><label class="btn ghost" for="impIn">Daten importieren</label><input type="file" id="impIn" accept="application/json,.json,text/plain" hidden></div>
+      <div class="status" id="bakStatus" role="status"></div>
+    </div>
+
