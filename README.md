@@ -1,8 +1,8 @@
 # Ernährungstracker
 
-Kalorien- und Ernährungstracker zum **gesunden Zunehmen**, als Android-App und als Web-Version. Erfasst Mahlzeiten per Foto, Barcode, Etikett-Texterkennung, Beschreibung oder Schnell-Liste, bewertet jedes Essen mit einem wissenschaftlich begründeten Ernährungs-Score von 1 bis 10 und schlägt passende Gerichte aus über 2.500 Rezepten vor.
+Kalorien- und Ernährungstracker zum **gesunden Zunehmen**, als Android-App und als Web-Version. Erfasst Mahlzeiten per Foto, Barcode, Etikett-Texterkennung, Beschreibung oder Schnell-Liste, bewertet jedes Essen mit einem wissenschaftlich begründeten Ernährungs-Score von 1 bis 10 und schlägt passende Gerichte aus über 2.800 Rezepten vor.
 
-**Aktuelle Version: 2.0** · [APK herunterladen](apk/Ernaehrungstracker-2.0.apk)
+**Aktuelle Version: 2.1** · [APK herunterladen](apk/Ernaehrungstracker-2.1.apk)
 
 ## Funktionen
 
@@ -12,8 +12,9 @@ Kalorien- und Ernährungstracker zum **gesunden Zunehmen**, als Android-App und 
 - **Mahlzeiten aus mehreren Zutaten** mit Übersichtsseite: Werte ändern, Mengen anpassen (Änderungen rechnen Kalorien, Makros und Vitamine automatisch um), Zutaten löschen.
 - **Ernährungs-Score 1–10** auf Basis von Nutri-Score-Logik, NOVA-Verarbeitungsgrad und Empfehlungen von WHO und DGE.
 - **Vitamine und Mineralstoffe** je Mahlzeit und Tag im Vergleich zu den DGE-Referenzwerten.
-- **Über 2.500 Rezeptvorschläge**: 682 Frühstücke, 620 Mittagessen, 620 Abendessen, 595 Snacks, je mit Zutaten, Zubereitung und Nährwerten. Passend zur Uhrzeit und zu den noch fehlenden Kalorien.
+- **Über 2.800 Rezeptvorschläge**: 773 Frühstücke, 700 Mittagessen, 700 Abendessen, 667 Snacks, je mit Zutaten, Zubereitung und Nährwerten. Passend zur Uhrzeit und zu den noch fehlenden Kalorien.
 - **Mahlzeiten-Einstellungen**: Frühstück, Snacks, später Snack und Midnight Snack ein- oder ausschalten.
+- **Gestern nachtragen**: Mit ‹ und › auf der Startseite Essen, Trinken, Training und Gewicht vergangener Tage hinzufügen und bearbeiten. Einstellbar, ab welcher Uhrzeit ein neuer Tag beginnt.
 - **Rezepte**: eigene Rezepte mit Portionen und Foto der fertigen Mahlzeit; eingetragene Vorschläge landen automatisch im Ordner „KI-Rezepte“.
 - **Einkaufsliste**: manuell, aus Rezepten, aus Vorschlägen und aus dem Chat; gleiche Zutaten werden zusammengerechnet und nach Supermarkt-Bereich sortiert.
 - **Ernährungs-Chat**: Fragen zu Einkauf, Lebensmitteln und Training, mit Kontext zu Tagesziel und heutigem Stand.
@@ -24,7 +25,7 @@ Kalorien- und Ernährungstracker zum **gesunden Zunehmen**, als Android-App und 
 
 ## Installation (Android)
 
-1. [`apk/Ernaehrungstracker-2.0.apk`](apk/Ernaehrungstracker-2.0.apk) aufs Handy laden und öffnen.
+1. [`apk/Ernaehrungstracker-2.1.apk`](apk/Ernaehrungstracker-2.1.apk) aufs Handy laden und öffnen.
 2. „Installation aus dieser Quelle zulassen“ erlauben. Warnt Play Protect, „Trotzdem installieren“ wählen.
 3. Beim ersten Start Mitteilungen erlauben, damit die Erinnerungen ankommen.
 
@@ -55,7 +56,7 @@ android/    Android-Hülle (WebView) und Build-Skripte
   app-panel.html  zusätzliche Bereiche im Profil der App
   build_html.py   baut aus der Web-Version die Datei app/assets/index.html
   build.sh        baut und signiert die APK
-modules/    lesbare Einzelquellen der Funktionen aus Version 2.0
+modules/    lesbare Einzelquellen der Funktionen ab Version 2.0
             (Rezeptgenerator, Mahlzeiten, Einkaufsliste, Chat, Rezepte)
 ```
 

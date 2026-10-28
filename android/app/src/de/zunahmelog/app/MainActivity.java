@@ -226,7 +226,7 @@ public class MainActivity extends Activity {
                         c.setRequestMethod(isPost ? "POST" : "GET");
                         c.setConnectTimeout(8000);
                         c.setReadTimeout(600000);
-                        c.setRequestProperty("User-Agent", "Ernaehrungstracker/2.0 (Android " + Build.VERSION.RELEASE + ")");
+                        c.setRequestProperty("User-Agent", "Ernaehrungstracker/2.1 (Android " + Build.VERSION.RELEASE + ")");
                         JSONObject h = new JSONObject(headersJson);
                         Iterator<String> keys = h.keys();
                         while (keys.hasNext()) { String k = keys.next(); c.setRequestProperty(k, h.getString(k)); }

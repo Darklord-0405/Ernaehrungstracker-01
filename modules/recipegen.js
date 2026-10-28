@@ -81,6 +81,8 @@ const FD={
  pilze:["Champignons","Obst & Gemüse",1,22,3,1,.3,1,2,0,0, 0,.2,0,0,2,.1,.4,.1,17,0,3,9,.5,.5,318],
  blumenkohl:["Blumenkohl","Obst & Gemüse",1,25,2,3,.3,2,1.9,0,0, 0,0,.1,16,48,.05,.06,.18,57,0,22,15,.4,.3,299],
  erbsen:["Erbsen (TK)","Tiefkühl",1,80,5.4,12,.4,5,5,.1,0, 38,0,.1,25,40,.27,.1,.17,65,0,25,33,1.5,1.2,244],
+ kuerbis:["Hokkaido-Kürbis","Obst & Gemüse",1,49,1.7,9.7,.6,2.5,4,.1,0, 400,0,1,1,15,.05,.07,.15,25,0,20,15,.8,.2,350],
+ aubergine:["Aubergine","Obst & Gemüse",1,24,1.2,2.5,.2,2.8,2.4,0,0, 2,0,0,3.5,2,.04,.04,.08,22,0,13,14,.3,.2,230],
  tomate:["Tomaten","Obst & Gemüse",1,18,.9,2.6,.2,1.2,2.6,0,0, 42,0,.5,8,14,.04,.02,.08,15,0,10,11,.3,.2,237],
  passtomate:["Passierte Tomaten","Konserven",3,35,1.5,6,.2,1.5,4.5,0,.1, 40,0,1,3,10,.04,.05,.1,12,0,15,18,.8,.2,350,"ml"],
  zwiebel:["Zwiebeln","Obst & Gemüse",1,40,1.1,8,.1,1.7,4.2,0,0, 0,0,0,0,7,.05,.03,.12,19,0,23,10,.2,.2,146,[80,"Zwiebel","Zwiebeln"]],
@@ -138,7 +140,7 @@ function rng(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)>>>0;let t=s;t=Math
 function shuffle(a,seed){const r=rng(seed);for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
 const FRUIT={banane:["Banane",120],beeren:["Beeren",125],erdbeeren:["Erdbeeren",150],mango:["Mango",120],apfel:["Apfel",150],birne:["Birne",160],kiwi:["Kiwi",150]};
-const VEG={brokkoli:["Brokkoli",200],paprika:["Paprika",200],zucchini:["Zucchini",200],spinat:["Spinat",120],moehren:["Möhren",200],gbohnen:["grünen Bohnen",200],pilze:["Champignons",200],blumenkohl:["Blumenkohl",220],erbsen:["Erbsen",150],tomate:["Tomaten",200]};
+const VEG={kuerbis:["Kürbis",250],aubergine:["Aubergine",220],brokkoli:["Brokkoli",200],paprika:["Paprika",200],zucchini:["Zucchini",200],spinat:["Spinat",120],moehren:["Möhren",200],gbohnen:["grünen Bohnen",200],pilze:["Champignons",200],blumenkohl:["Blumenkohl",220],erbsen:["Erbsen",150],tomate:["Tomaten",200]};
 
 function genBreakfast(){
   const out=[];
@@ -198,6 +200,13 @@ function genBreakfast(){
     const [fn,fg]=FRUIT[fk],a=adds[i],b=adds[j];
     out.push(mkRecipe("fruh",`${fn}-Shake mit ${a[2]} und ${b[2]}`,"5 Min.",[["milch",350],[fk,fg],[a[0],a[1]],[b[0],b[1]]],["Alle Zutaten in den Mixer geben.","30–60 Sekunden mixen, bis alles fein ist.","Sofort trinken. Ideal, wenn morgens wenig Hunger da ist."]));
   }
+  // neu in 2.1: Frühstücks-Wraps, Süßkartoffel-Hash, Quinoa-Frühstücksbowls
+  for(const [pk,pg,pn] of [["ei",120,"Rührei"],["huettenkaese",120,"Hüttenkäse"],["lachsger",60,"Räucherlachs"]])for(const [vk,vn] of [["spinat","Spinat"],["paprika","Paprika"],["tomate","Tomate"],["pilze","Champignons"],["salat","Rucola"]])for(const [ck,cg,cn] of [["feta",30,"Feta"],["kaese",25,"Bergkäse"],["avocado",60,"Avocado"]]){
+    out.push(mkRecipe("fruh",`Frühstücks-Wrap mit ${pn}, ${vn} und ${cn}`,"10 Min.",[["wrap",60],[pk,pg],[vk,vk==="salat"?30:80],[ck,cg],["olivenoel",5]],[pk==="ei"?"Eier verquirlen und im Öl cremig stocken lassen.":`${pn} bereitstellen.`,`${vn} klein schneiden${vk==="spinat"||vk==="pilze"?" und kurz anbraten":""}.`,`Wrap kurz in der Pfanne erwärmen und mit ${pn}, ${vn} und ${cn} füllen.`,"Fest einrollen und halbieren."]));}
+  for(const [vk,vn] of [["paprika","Paprika"],["spinat","Spinat"],["zucchini","Zucchini"],["pilze","Champignons"],["kuerbis","Kürbis"],["brokkoli","Brokkoli"]])for(const [pk,pg,pn] of [["ei",120,"Spiegelei"],["feta",40,"Feta"],["huettenkaese",100,"Hüttenkäse"]]){
+    out.push(mkRecipe("fruh",`Süßkartoffel-Hash mit ${vn} und ${pn}`,"25 Min.",[["suesskart",250],[vk,100],[pk,pg],["olivenoel",12],["zwiebel",40]],["Süßkartoffel schälen, klein würfeln und im Öl 12–15 Minuten knusprig braten.",`Zwiebel und ${vn} klein schneiden und 4 Minuten mitbraten.`,pk==="ei"?"Eier daneben in die Pfanne schlagen und braten, bis das Eiweiß fest ist.":`${pn} darüber geben.`,"Mit Salz, Pfeffer und Paprikapulver würzen."]));}
+  for(const fk in FRUIT)for(const [tk,tg,tn] of [["mandeln",20,"Mandeln"],["walnuss",20,"Walnüssen"],["eb",20,"Erdnussbutter"],["kuerbiskerne",15,"Kürbiskernen"]]){const [fn,fg]=FRUIT[fk];
+    out.push(mkRecipe("fruh",`Quinoa-Frühstücksbowl mit ${fn} und ${tn}`,"20 Min.",[["quinoa",60],["milch",200],[fk,fg],[tk,tg],["honig",10]],["Quinoa heiß abspülen und in der Milch mit einer Prise Zimt 15 Minuten köcheln.",`${fn} klein schneiden.`,`Quinoa in eine Schüssel geben und mit ${fn}, ${tn} und Honig toppen.`]));}
   return out;
 }
 
@@ -235,6 +244,11 @@ function genSnacks(){
     out.push(mkRecipe("snack",`Wrap-Röllchen mit ${sn} und ${tn}`,"5 Min.",[["wrap",60],[sk,sg],[tk,tg]],[`Wrap mit ${sn} bestreichen.`,`${tn} klein schneiden und darauf verteilen.`,"Fest aufrollen und in Scheiben schneiden."]));}
   for(const fk in FRUIT)for(const [tk,tg,tn] of [["mandeln",20,"Mandeln"],["kakao",6,"Kakao"],["nussmix",20,"Nüssen"],["honig",8,"Honig"],["walnuss",20,"Walnüssen"]]){const [fn,fg]=FRUIT[fk];
     out.push(mkRecipe("snack",`Chia-Pudding mit ${fn} und ${tn}`,"5 Min. + 2 Std.",[["milch",200],["chia",25],[fk,Math.round(fg*.7)],[tk,tg]],["Chiasamen mit der Milch verrühren, nach 5 Minuten nochmal umrühren.","Mindestens 2 Stunden oder über Nacht kühlen.",`Mit ${fn} und ${tn} servieren.`]));}
+  // neu in 2.1: Parfaits und Obst mit Nussmus
+  for(const [bk,bg,bn] of [["skyr",150,"Skyr"],["griechjog",150,"Joghurt"],["quark",150,"Quark"]])for(const fk in FRUIT)for(const [ck,cg,cn] of [["granola",30,"Granola"],["hafer",25,"Haferflocken"],["nussmix",20,"Nüssen"]]){const [fn,fg]=FRUIT[fk];
+    out.push(mkRecipe("snack",`${bn}-Parfait mit ${fn} und ${cn}`,"5 Min.",[[bk,bg],[fk,Math.round(fg*.6)],[ck,cg]],[`${bn} und ${fn} abwechselnd in ein Glas schichten.`,`Mit ${cn} abschließen.`,"Sofort essen oder abgedeckt bis zu einem Tag kühlen."]));}
+  for(const fk of ["apfel","birne","banane"])for(const [mk,mg,mn] of [["eb",25,"Erdnussbutter"],["mandelmus",20,"Mandelmus"],["tahin",20,"Tahin und Honig"]]){const [fn,fg]=fr[fk];
+    out.push(mkRecipe("snack",`${fn} mit ${mn}`,"2 Min.",[[fk,fg],[mk,mg],...(mk==="tahin"?[["honig",6]]:[])],[`${fn} in Spalten oder Scheiben schneiden.`,`Mit ${mn} zum Dippen servieren.`]));}
   return out;
 }
 
@@ -291,7 +305,7 @@ function genMains(cat,seed){
   shuffle(cands,seed);
   const out=[],names=new Set();
   for(const [f,pk,ck,vk,sk] of cands){
-    if(out.length>=620)break;
+    if(out.length>=700)break;
     const P=PROT[pk],C=ck?CARB[ck]:null,V=VEG[vk],S=STYLE[sk];
     let name;
     if(f==="bowl")name=`${S.a.f} ${P.c}-${C.c}-Bowl mit ${V[0]}`;
@@ -358,3 +372,4 @@ function genPool(cat){
   return GEN[cat];
 }
 function genAll(){const t0=Date.now();["fruh","mittag","abend","snack"].forEach(genPool);GEN.ms=Date.now()-t0;return GEN}
+

@@ -14,7 +14,7 @@ python3 build_html.py "${1:-../web/ernaehrungstracker.html}"
 
 $AAPT2 compile --dir app/res -o $OUT/res.zip
 $AAPT2 link -o $OUT/base.apk -I $ANDROID_JAR --manifest app/AndroidManifest.xml \
-  --min-sdk-version 24 --target-sdk-version 34 --version-code 11 --version-name 2.0 \
+  --min-sdk-version 24 --target-sdk-version 34 --version-code 12 --version-name 2.1 \
   -A app/assets --java $OUT/gen $OUT/res.zip
 
 javac -nowarn -source 8 -target 8 -bootclasspath $ANDROID_JAR -encoding UTF-8 \
